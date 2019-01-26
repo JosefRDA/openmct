@@ -47,10 +47,79 @@ define([
                             "key": "url",
                             "name": "URL",
                             "control": "textfield",
-                            "pattern": "^(ftp|https?)\\:\\/\\/",
                             "required": true,
                             "cssClass": "l-input-lg"
-                        }
+                        },
+                        {
+                            "key": "size",
+                            "name": "Image size",
+                            "control": "select",
+                            "required": true,
+                            "options": [
+                                {
+                                    "name": "Original size",
+                                    "value": "auto"
+                                },
+                                {
+                                    "name": "Contain within area (maintain aspect ratio)",
+                                    "value": "contain"
+                                },
+                                {
+                                    "name": "Cover whole area (maintain aspect ratio)",
+                                    "value": "cover"
+                                },
+                                {
+                                    "name": "Fit to area",
+                                    "value": "100% 100%"
+                                },
+                            ],
+                            "cssClass": "l-inline"
+                        },
+                        {
+                            "key": "position",
+                            "name": "Image position",
+                            "control": "select",
+                            "required": true,
+                            "options": [
+                                {
+                                    "name": "Top left",
+                                    "value": "left top"
+                                },
+                                {
+                                    "name": "Top center",
+                                    "value": "center top"
+                                },
+                                {
+                                    "name": "Top right",
+                                    "value": "right top"
+                                },
+                                {
+                                    "name": "Middle left",
+                                    "value": "left center"
+                                },
+                                {
+                                    "name": "Middle center",
+                                    "value": "center center"
+                                },
+                                {
+                                    "name": "Middle right",
+                                    "value": "right center"
+                                },
+                                {
+                                    "name": "Bottom left",
+                                    "value": "left bottom"
+                                },
+                                {
+                                    "name": "Bottom center",
+                                    "value": "center bottom"
+                                },
+                                {
+                                    "name": "Bottom right",
+                                    "value": "right bottom"
+                                },
+                            ],
+                            "cssClass": "l-inline"
+                        },
                     ]
                 }
             ],

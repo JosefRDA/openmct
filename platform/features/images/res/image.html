@@ -19,7 +19,5 @@
  this source code distribution or the Licensing information page available
  at runtime from the About dialog for additional information.
 -->
-<div class="l-images abs">
-    <img ng-controller="ImageController as ctl"
-        ng-src="{{ctl.trust(model.url)}}"></img>
+<div class="l-images abs" style="background-image: url({{model.url}}); background-size: {{model.size}}; background-position: {{model.position}}">
 </div>
