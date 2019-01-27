@@ -266,8 +266,44 @@ define([
         }
 
         var baseDatum = _.clone(latestTimestamp);
-        return this.makeDatumFromRule(i, baseDatum);
+        var datum = this.makeDatumFromRule(i, baseDatum);
+        performLabelReplacements(datum, state);
+        return datum
     };
+
+    function performLabelReplacements(datum, wholeState) {
+        if (!wholeState) {
+            return;
+        }
+        var keys = Object.keys(wholeState);
+        if (keys.length == 0) {
+            return;
+        }
+        
+        // TODO: Just arbitrarily choose one of the telemetry sources, this should be better
+        var state = wholeState[keys[0]];
+
+        var regex = /^(.*)\{\{([a-zA-Z0-9_]+)\}\}(.*)$/;
+        var str = datum.ruleLabel;
+        var match;
+        while (match = str.match(regex)) {
+            var start = match[1];
+            var key = match[2];
+            var end = match[3];
+            var value = "(?)";
+
+            if (state && state.lastDatum && state.lastDatum[key]) {
+                if (state && state.formats && state.formats[key] && state.formats[key].formatter && state.formats[key].formatter.format) {
+                    value = state.formats[key].formatter.format(state.lastDatum[key]);
+                } else {
+                    value = "" + state.lastDatum[key];
+                }
+            }
+            str = start + value + end;
+        }
+        datum.ruleLabel = str;
+    }
+
 
     /**
      * remove all listeners and clean up any resources.
