@@ -10,6 +10,11 @@ define([
         this.render = this.render.bind(this);
     }
 
+    function htmlDecode(input) {
+      var doc = new DOMParser().parseFromString(input, "text/html");
+      return doc.documentElement.textContent;
+    }
+
     SummaryWidgetView.prototype.updateState = function (datum) {
         this.hasUpdated = true;
         this.widget.style.color = datum.textColor;
@@ -17,7 +22,7 @@ define([
         this.widget.style.borderColor = datum.borderColor;
         this.widget.title = datum.message;
         this.label.title = datum.message;
-        this.label.innerHTML = datum.ruleLabel;
+        this.label.innerHTML = htmlDecode(datum.ruleLabel);  // Note: XSS with untrusted labels
         this.label.className = 'label widget-label ' + datum.icon;
     };
 
