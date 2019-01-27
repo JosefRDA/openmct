@@ -79,6 +79,11 @@ define([
                     format: 'string'
                 },
                 {
+                    name: 'Label Size',
+                    key: 'ruleLabelSize',
+                    format: 'string'
+                },
+                {
                     name: 'Rule Name',
                     key: 'ruleName',
                     format: 'string'

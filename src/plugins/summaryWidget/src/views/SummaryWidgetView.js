@@ -20,6 +20,11 @@ define([
         this.widget.style.color = datum.textColor;
         this.widget.style.backgroundColor = datum.backgroundColor;
         this.widget.style.borderColor = datum.borderColor;
+        if (datum.ruleLabelSize) {
+            this.widget.style.fontSize = datum.ruleLabelSize;
+        } else {
+            this.widget.style.fontSize = "";
+        }
         this.widget.title = datum.message;
         this.label.title = datum.message;
         this.label.innerHTML = htmlDecode(datum.ruleLabel);  // Note: XSS with untrusted labels

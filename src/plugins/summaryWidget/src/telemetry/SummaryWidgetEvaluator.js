@@ -223,6 +223,7 @@ define([
         var rule = this.rules[ruleIndex];
 
         baseDatum.ruleLabel = rule.label;
+        baseDatum.ruleLabelSize = rule.labelSize;
         baseDatum.ruleName = rule.name;
         baseDatum.message = rule.message;
         baseDatum.ruleIndex = ruleIndex;

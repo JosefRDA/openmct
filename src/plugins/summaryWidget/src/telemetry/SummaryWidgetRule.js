@@ -28,6 +28,7 @@ define([
     function SummaryWidgetRule(definition) {
         this.name = definition.name;
         this.label = definition.label;
+        this.labelSize = definition.labelSize;
         this.id = definition.id;
         this.icon = definition.icon;
         this.style = definition.style;
