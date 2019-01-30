@@ -1,0 +1,5 @@
+<div class="l-html abs {{model.valign ? 'flex': ''}}"
+  ng-controller="HtmlWidgetController as ctl"
+  ng-bind-html="ctl.trustHtml(model.html)"
+  style="{{model.valign ? ('justify-content:'+model.valign+';') : '' }} {{ctl.trustCss(model.css)}}">
+</div>
