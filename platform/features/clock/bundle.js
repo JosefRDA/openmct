@@ -74,7 +74,7 @@ define([
             "constants": [
                 {
                     "key": "CLOCK_INDICATOR_FORMAT",
-                    "value": "YYYY/MM/DD HH:mm:ss"
+                    "value": "Y-DDDD HH:mm:ss"
                 }
             ],
             "indicators": [
@@ -218,12 +218,8 @@ define([
                                     "control": "select",
                                     "options": [
                                         {
-                                            "value": "YYYY/MM/DD hh:mm:ss",
-                                            "name": "YYYY/MM/DD hh:mm:ss"
-                                        },
-                                        {
-                                            "value": "YYYY/DDD hh:mm:ss",
-                                            "name": "YYYY/DDD hh:mm:ss"
+                                            "value": "Y-DDDD hh:mm:ss",
+                                            "name": "Y-DDDD hh:mm:ss"
                                         },
                                         {
                                             "value": "hh:mm:ss",
@@ -235,10 +231,6 @@ define([
                                 {
                                     "control": "select",
                                     "options": [
-                                        {
-                                            "value": "clock12",
-                                            "name": "12hr"
-                                        },
                                         {
                                             "value": "clock24",
                                             "name": "24hr"
@@ -257,8 +249,8 @@ define([
                     ],
                     "model": {
                         "clockFormat": [
-                            "YYYY/MM/DD hh:mm:ss",
-                            "clock12"
+                            "Y-DDDD hh:mm:ss",
+                            "clock24"
                         ],
                         "timezone": "UTC"
                     }

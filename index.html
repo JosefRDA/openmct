@@ -30,6 +30,9 @@
         <script>
             var THIRTY_MINUTES = 30 * 60 * 1000;
 
+            // Shift all time output by this amount
+            var TIME_SHIFT = -1500 * 365 * 24 * 60 * 60 * 1000;
+
             require(['openmct'], function (openmct) {
                 [
                     'example/eventGenerator',

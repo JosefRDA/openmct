@@ -39,8 +39,11 @@ define(
             this.text = "";
 
             tickerService.listen(function (timestamp) {
-                self.text = moment.utc(timestamp)
-                    .format(indicatorFormat) + " UTC";
+                if (window.TIME_SHIFT) {
+                    timestamp += window.TIME_SHIFT;
+                }
+                self.text = moment.utc(timestamp).local()
+                    .format(indicatorFormat) + " EST";
             });
         }
 

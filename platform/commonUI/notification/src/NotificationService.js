@@ -313,7 +313,7 @@ define(
                 topic = this.topic();
 
             notificationModel.severity = notificationModel.severity || "info";
-            notificationModel.timestamp = moment.utc().format('YYYY-MM-DD hh:mm:ss.ms');
+            notificationModel.timestamp = moment.utc(Date.now() + TIME_SHIFT).local().format('Y-DDDD hh:mm:ss');
 
             notification = {
                 model: notificationModel,

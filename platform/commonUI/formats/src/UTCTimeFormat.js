@@ -26,12 +26,11 @@ define([
     moment
 ) {
 
-    var DATE_FORMAT = "YYYY-MM-DD HH:mm:ss.SSS",
+    var DATE_FORMAT = "Y-DDDD HH:mm:ss",
         DATE_FORMATS = [
             DATE_FORMAT,
-            "YYYY-MM-DD HH:mm:ss",
-            "YYYY-MM-DD HH:mm",
-            "YYYY-MM-DD"
+            "Y-DDDD HH:mm",
+            "Y-DDDD"
         ];
 
     /**
@@ -75,20 +74,17 @@ define([
             ["HH:mm", function (m) {
                 return m.minutes();
             }],
-            ["HH", function (m) {
-                return m.hours();
-            }],
-            ["ddd DD", function (m) {
+            ["Y-DDDD", function (m) {
                 return m.days() &&
                     m.date() !== 1;
             }],
-            ["MMM DD", function (m) {
+            ["Y-DDDD", function (m) {
                 return m.date() !== 1;
             }],
-            ["MMMM", function (m) {
+            ["Y-DDDD", function (m) {
                 return m.month();
             }],
-            ["YYYY", function () {
+            ["Y-DDDD", function () {
                 return true;
             }]
         ].filter(function (row) {
@@ -96,7 +92,7 @@ define([
             })[0][0];
 
         if (format !== undefined) {
-            return moment.utc(d).format(format);
+            return moment.utc(d).local().format(format);
         }
     }
 
@@ -113,10 +109,16 @@ define([
      * in the array.
      */
     UTCTimeFormat.prototype.format = function (value) {
+        if (window.TIME_SHIFT) {
+            value += window.TIME_SHIFT;
+        }
+
         if (arguments.length > 1) {
-            return getScaledFormat(value);
+            var result = getScaledFormat(value)
+            // console.error("Why are you calling me?, arguments=", arguments, " result=" + result);
+            return  result;
         } else if (value !== undefined) {
-            return moment.utc(value).format(DATE_FORMAT) + "Z";
+            return moment.utc(value).local().format(DATE_FORMAT) + " EST";
         } else {
             return value;
         }

@@ -11,7 +11,7 @@ define(
          *           for this specific domain object
          */
 
-        var TIME_FORMAT = "YYYY-MM-DD HH:mm:ss";
+        var TIME_FORMAT = "Y-DDDD HH:mm:ss";
 
         /**
          * Implements the `metadata` capability of a domain object, providing
@@ -48,7 +48,7 @@ define(
 
             function formatTimestamp(timestamp) {
                 return typeof timestamp === 'number' ?
-                        (moment.utc(timestamp).format(TIME_FORMAT) + " UTC") :
+                        (moment.utc(timestamp).local().format(TIME_FORMAT) + " EST") :
                         undefined;
             }
 
