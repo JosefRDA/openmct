@@ -73,7 +73,7 @@ define([
         },
         updateDisplayRange: function (range) {
             if (!this.get('autoscale')) {
-                this.set('displayRange', range);
+                this.set('displayRange', this.applyRange(range, this.get('stats')));
             }
         },
         toggleFreeze: function (frozen) {
@@ -91,17 +91,46 @@ define([
                 max: range.max + padding
             };
         },
+        applyRange: function (range, stats) {
+            var min = Infinity, max = -Infinity;
+            if (range && typeof range.min !== 'undefined') {
+                min = Math.min(min, range.min);
+            }
+            if (range && typeof range.max !== 'undefined') {
+                max = Math.max(max, range.max);
+            }
+            if (stats && typeof stats.min !== 'undefined') {
+                min = Math.min(min, stats.min);
+            }
+            if (stats && typeof stats.max !== 'undefined') {
+                max = Math.max(max, stats.max);
+            }
+            if (!isFinite(min)) {
+                min = 0;
+            }
+            if (!isFinite(max)) {
+                max = 0;
+            }
+            return {
+                min: min,
+                max: max,
+            }
+        },
         updatePadding: function (newPadding) {
             if (this.get('autoscale') && !this.get('frozen') && this.has('stats')) {
                 this.set('displayRange', this.applyPadding(this.get('stats')));
             }
         },
         calculateAutoscaleExtents: function (newStats) {
-            if (this.get('autoscale') && !this.get('frozen')) {
-                if (!newStats) {
-                    this.unset('displayRange');
+            if (!this.get('frozen')) {
+                if (this.get('autoscale')) {
+                    if (!newStats) {
+                        this.unset('displayRange');
+                    } else {
+                        this.set('displayRange', this.applyPadding(newStats));
+                    }
                 } else {
-                    this.set('displayRange', this.applyPadding(newStats));
+                    this.set('displayRange', this.applyRange(this.get('range'), newStats));
                 }
             }
         },
@@ -159,7 +188,7 @@ define([
             if (autoscale && this.has('stats')) {
                 this.set('displayRange', this.applyPadding(this.get('stats')));
             } else {
-                this.set('displayRange', this.get('range'));
+                this.set('displayRange', this.applyRange(this.get('range'), this.get('stats')));
             }
         },
         /**
