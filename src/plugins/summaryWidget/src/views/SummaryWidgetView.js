@@ -25,6 +25,12 @@ define([
         } else {
             this.widget.style.fontSize = "";
         }
+        if (datum.ruleBackgroundImage) {
+            this.widget.style.backgroundImage = "url('" + datum.ruleBackgroundImage + "')";
+            this.widget.style.backgroundSize = "100% 100%";
+        } else {
+            this.widget.style.backgroundImage = "";
+        }
         this.widget.title = datum.message;
         this.label.title = datum.message;
         this.label.innerHTML = htmlDecode(datum.ruleLabel);  // Note: XSS with untrusted labels

@@ -224,6 +224,7 @@ define([
 
         baseDatum.ruleLabel = rule.label;
         baseDatum.ruleLabelSize = rule.labelSize;
+        baseDatum.ruleBackgroundImage = rule.backgroundImage;
         baseDatum.ruleName = rule.name;
         baseDatum.message = rule.message;
         baseDatum.ruleIndex = ruleIndex;

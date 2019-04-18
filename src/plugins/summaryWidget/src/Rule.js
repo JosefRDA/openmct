@@ -72,6 +72,7 @@ define([
             name: $('.t-rule-name-input', this.domElement),
             label: $('.t-rule-label-input', this.domElement),
             labelSize: $('.t-rule-label-size-input', this.domElement),
+            backgroundImage: $('.t-rule-background-image-input', this.domElement),
             message: $('.t-rule-message-input', this.domElement),
             jsCondition: $('.t-rule-js-condition-input', this.domElement)
         };

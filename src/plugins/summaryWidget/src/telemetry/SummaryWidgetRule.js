@@ -29,6 +29,7 @@ define([
         this.name = definition.name;
         this.label = definition.label;
         this.labelSize = definition.labelSize;
+        this.backgroundImage = definition.backgroundImage;
         this.id = definition.id;
         this.icon = definition.icon;
         this.style = definition.style;

@@ -84,6 +84,11 @@ define([
                     format: 'string'
                 },
                 {
+                    name: 'Background image',
+                    key: 'ruleBackgroundImage',
+                    format: 'string'
+                },
+                {
                     name: 'Rule Name',
                     key: 'ruleName',
                     format: 'string'
