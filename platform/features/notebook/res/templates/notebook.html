@@ -44,7 +44,6 @@
                 mct-entry-dnd>
                 <div class="holder flex-elem l-flex-row grows w-notebook-entry-time-and-content">
                     <div class="holder flex-elem s-notebook-entry-time">
-                        <span>{{entry.createdOn | date:'yyyy-MM-dd'}}</span>
                         <span>{{entry.createdOn | date:'HH:mm:ss'}}</span>
                     </div>
                     <div class="holder flex-elem l-flex-col grows l-notebook-entry-content">
@@ -101,7 +100,7 @@
                                         </div>
                                     </div>
                                     <div class="embed-date"
-                                         ng-if="embed.snapshot">{{embed.id| date:'yyyy-MM-dd HH:mm:ss'}}
+                                         ng-if="embed.snapshot">{{embed.id| date:'HH:mm:ss'}}
                                     </div>
                                 </div>
                             </div>
