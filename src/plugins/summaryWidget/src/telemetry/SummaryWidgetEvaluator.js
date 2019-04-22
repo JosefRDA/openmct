@@ -282,7 +282,13 @@ define([
         }
         
         // TODO: Just arbitrarily choose one of the telemetry sources, this should be better
-        var state = wholeState[keys[0]];
+        // Sometimes wholeState seems to be directly the value instead of a map.
+        var state;
+        if (wholeState.id) {
+            state = wholeState;
+        } else {
+            state = wholeState[keys[0]];
+        }
 
         var regex = /^(.*)\{\{([a-zA-Z0-9_]+)\}\}(.*)$/;
         var str = datum.ruleLabel;
