@@ -276,20 +276,17 @@ define([
         if (!wholeState) {
             return;
         }
-        var keys = Object.keys(wholeState);
-        if (keys.length == 0) {
+        var states;
+        if (wholeState.id) {
+            // Sometimes this is directly the only state...?
+            states = [ wholeState ];
+        } else {
+            states = Object.values(wholeState);
+        }
+        if (states.length == 0) {
             return;
         }
         
-        // TODO: Just arbitrarily choose one of the telemetry sources, this should be better
-        // Sometimes wholeState seems to be directly the value instead of a map.
-        var state;
-        if (wholeState.id) {
-            state = wholeState;
-        } else {
-            state = wholeState[keys[0]];
-        }
-
         var regex = /^(.*)\{\{([a-zA-Z0-9_]+)\}\}(.*)$/;
         var str = datum.ruleLabel;
         var match;
@@ -299,11 +296,13 @@ define([
             var end = match[3];
             var value = "(?)";
 
-            if (state && state.lastDatum && state.lastDatum[key]) {
-                if (state && state.formats && state.formats[key] && state.formats[key].formatter && state.formats[key].formatter.format) {
-                    value = state.formats[key].formatter.format(state.lastDatum[key]);
-                } else {
-                    value = "" + state.lastDatum[key];
+            for (const state of states) {
+                if (state && state.lastDatum && state.lastDatum[key]) {
+                    if (state && state.formats && state.formats[key] && state.formats[key].formatter && state.formats[key].formatter.format) {
+                        value = state.formats[key].formatter.format(state.lastDatum[key]);
+                    } else {
+                        value = "" + state.lastDatum[key];
+                    }
                 }
             }
             str = start + value + end;
