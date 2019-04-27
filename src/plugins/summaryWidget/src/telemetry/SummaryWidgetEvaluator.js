@@ -297,7 +297,7 @@ define([
             var value = "(?)";
 
             for (const state of states) {
-                if (state && state.lastDatum && state.lastDatum[key]) {
+                if (state && state.lastDatum && state.lastDatum[key] != null) {
                     if (state && state.formats && state.formats[key] && state.formats[key].formatter && state.formats[key].formatter.format) {
                         value = state.formats[key].formatter.format(state.lastDatum[key]);
                     } else {
